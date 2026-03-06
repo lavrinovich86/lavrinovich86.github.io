@@ -29,10 +29,6 @@ social_links:
   -
     icon: mail
     link: mailto:maris.lavrinovics@gmail.com
-  -
-    icon: flag
-    label: HackTheBox
-    link: https://app.hackthebox.com/profile/688378
 
 
 # Customize the overview with displaying a tagcloud on the index page.

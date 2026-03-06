@@ -1,5 +1,5 @@
 ---
-title: cert.lv task - 1
+title: cert.lv computer and ram investigation task
 date: 2026-03-05 09:39:36
 tags:
 ---
