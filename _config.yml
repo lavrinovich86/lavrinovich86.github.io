@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://lavrinovich.gitlab.com
+url: https://lavrinovich.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,5 +103,5 @@ theme: cactus
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@gitlab.com:lavrinovich/lavrinovich.gitlab.io.git   # Use SSH URL!
+  repo: git@github.com:lavrinovich86/lavrinovich86.github.io.git   # Use SSH URL!
   branch: master   # or master/pages – GitLab Pages can read from any branch
