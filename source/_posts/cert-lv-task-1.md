@@ -4,7 +4,7 @@ date: 2026-03-05 09:39:36
 tags:
 ---
 
-# Task details
+## Task details
 
 
 Bauskā atrodas mazs uzņēmums. Tur strādā IT administrators - Lauris Bārda un darbinieks - K. Sniedziņš.
@@ -31,7 +31,7 @@ Atskaitē par uzdevumu risināšanu ir jāiekļauj:
 - timeline ar hronoloģisko notikuma gaitu (laiks, kas notika, pierādījuma *source*)
 
 
-# Tools used in investigation
+## Tools used in investigation
 
 - **FlareVM** - [https://github.com/mandiant/flare-vm](https://github.com/mandiant/flare-vm)
 - **Arsenal-Image-Mounter** - [https://arsenalrecon.com/products/arsenal-image-mounter](https://arsenalrecon.com/products/arsenal-image-mounter)
@@ -43,7 +43,7 @@ Atskaitē par uzdevumu risināšanu ir jāiekļauj:
 - **Volatility**- [https://github.com/volatilityfoundation/volatility3](https://github.com/volatilityfoundation/volatility3)
 - **PLASO** -  [https://github.com/log2timeline/plaso](https://github.com/log2timeline/plaso)
 
-# Working with investigation data.
+## Working with investigation data.
 
 The computer and FlareVM were configured to use UTC time.
 
@@ -62,7 +62,7 @@ kape.exe --sync https://github.com/EricZimmerman/KapeFiles/archive/master.zip
 .\kape.exe --tsource D: --tdest C:\evidence --tflush --target Avast,ClipboardMaster,MicrosoftOneNote,OneDrive_UserFiles,Session,Edge,Firefox,InternetExplorer,!BasicCollection,!SANS_Triage,Antivirus,CombinedLogs,KapeTriage,ProgramExecution,RegistryHives,WebBrowsers,ApacheAccessLog,PowerShellConsole,$LogFile,$MFT,ApplicationEvents,CertUtil,EventLogs,HostsFile,Prefetch,RDPLogs,RegistryHivesUser,RoamingProfile,ScheduledTasks,StartupFolders,Syscache,UsersFolders,WER,WindowsFirewall,WindowsIndexSearch 
 {% endcodeblock %}
 
-# Registry
+## Registry
 
 For the registry investigation, I used Registry Explorer to load hives files and used built-in bookmarks for efficient navigation and analysis.
 
@@ -76,7 +76,7 @@ Registry: HKLM\System\CurrentControlSet\Control\Computer name\
 Windows Version: **Windows 10 PRO 21H2**
 Registry: HKLM\Software\Microsoft\Windows NT\Current version\
 
-```plain text
+```
 ProductName               Windows 10 Pro
 ReleaseID                 2009
 BuildLab                  22000.co_release.210604-1628
@@ -92,7 +92,7 @@ Registry: HKLM\System\CurrentControlSet\Control\TimeZoneInformation\
 
 **Network Information** in Registry: HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\
 
-```plain text
+```
 Adapter: {7d266b6d-a545-462b-8c87-0619fce499e6} 
 LastWrite Time: 2024-05-02 10:03:47Z
   EnableDHCP                   1                   
@@ -112,7 +112,7 @@ LastWrite Time: 2024-05-02 10:03:47Z
   DhcpSubnetMaskOpt            255.255.255.0  
 ```
 
-```plain text
+```
 Z:\Tools\RegRipper4.0>rip.exe -r C:\CERT\E\Windows\System32\config\SOFTWARE -p networklist
 Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
 Network
@@ -134,7 +134,7 @@ Shutdown time: **2024-05-02 11:43:13**
 
 Registry: HKLM\System\ControlSet001\Control\Windows\ShutdownTime
 
-```plain text
+```
 Z:\Tools\RegRipper4.0>rip.exe -r C:\CERT\E\Windows\System32\config\SYSTEM -p shutdown
 Launching shutdown v.20201005
 (System) Gets ShutdownTime value from System hive
@@ -148,7 +148,7 @@ Defender settings: **Disabled**
 
 Registry: HKLM\Software\Microsoft\Windows Defender\
 
-```plain text
+```
 Z:\Tools\RegRipper4.0>rip.exe -r C:\CERT\E\Windows\System32\config\SOFTWARE -p defender
 Launching defender v.20211027
 defender v.20211027
@@ -176,7 +176,7 @@ DisableRealtimeMonitoring value = 1
 
 Information about recently accessed documents was retrieved from the registry.
 
-```plain text
+```
 Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
 LastWrite Time: 2024-05-02 10:04:44Z
   1 = The Internet
@@ -205,7 +205,7 @@ LastWrite Time: 2024-05-02 10:04:44Z
   2 = test.txt
 ```
 
-```plain text
+```
 Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US
 LastWrite Time 2024-04-30 12:28:36Z
   0 = microsoft.com&form=B00032&ocid=SettingsHAQ-BingIA&mkt=en-US
@@ -295,7 +295,7 @@ Recently accessed files by employee K. Sniedziņš
 The registry entry - **eParakstsUpdate - C:\Users\ksniedzins\Downloads\eparaksts.exe** has been identified as malware. It is configured to persist on the system through registry entries in the Startup section, allowing it to execute automatically when the computer starts.
 
 
-```plain text
+```
 Software\Microsoft\Windows\CurrentVersion\Run
 LastWrite Time 2024-05-02 11:42:25Z
   docupdate - C:\Users\ksniedzins\Documents\docupdate.exe
@@ -307,7 +307,7 @@ LastWrite Time 2024-05-02 11:42:25Z
   Avast Browser - C:\Users\ksniedzins\AppData\Local\AVAST Software\Browser\Update\1.8.1697.6\AvastBrowserUpdateCore.exe
 ```
 
-# Users, Groups and User Profiles
+## Users, Groups and User Profiles
 
 Active accounts during the attack timeframe - ksniedzins, AD-admin
 
@@ -315,7 +315,7 @@ Account were created but looks like used for FTK Imager- admin_local-xbsdk
 
 ![Screenshot](image1.png)
 
-# PowerShell scripts
+## PowerShell scripts
 
 Time ago before system was infected with malware there was changes PowerShell settings to unrestricted!
 
@@ -327,7 +327,7 @@ Time ago before system was infected with malware there was changes PowerShell se
 
 Found in the events PowerShell script up.ps1
 
-```plain text
+```
 C:\Users\ksniedzins\AppData\Local\Temp\up.ps1 
 ```
 
@@ -337,7 +337,7 @@ PSReflect is a library that enables PowerShell to access win32 API functions in 
 create enums and structs easily—all without touching the disk.
 
 
-# Thunderbird emails investigation
+## Thunderbird emails investigation
 
 In KAPE extracted files I found some email files leftovers.
 
@@ -364,7 +364,7 @@ This email attachment kontakti.rar employee Sniedzins opened.
 
 ![image_8.png](image_8.png)
 
-# System entry point
+## System entry point
 
 In the emails attachment I found *.bat scripts exploiting **CVE-2023-38831: WinRAR – Decompression or Arbitrary Code Execution **vulnerability - [https://www.cve.org/CVERecord?id=CVE-2023-38831](https://www.cve.org/CVERecord?id=CVE-2023-38831)
 
@@ -388,7 +388,7 @@ In archive Windows Command Prompt script.
 
 The script `vasaras_brivdienas.png.cmd`, contained within the archive `vasaras_brivdienas.rar`, was not executed.
 
-```bash
+```cmd
 @echo off
 "%ProgramFiles%\WinRAR\WinRar.exe" e -ibck "vasaras_brivdienas.rar" *.* %TEMP%\
 powershell -c "whoami" >>  %TEMP%\info.txt
@@ -409,7 +409,7 @@ del "%TEMP%\cmds.png .cmd"
 
 The script `kontakti.png.cmd`, contained within the archive file `kontakti.rar`, was executed upon extraction of the archive.
 
-```bash
+```cmd
 @echo off
 "%ProgramFiles%\WinRAR\WinRar.exe" e -ibck "kontakti.rar" *.* %TEMP%\
 powershell -c "whoami" >>  %TEMP%\info.txt
@@ -431,7 +431,7 @@ del "%TEMP%\cmds.png"
 
 Extraction time of the `kontakti.rar` archive.
 
-```bash
+```cmd
 Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.rar
 LastWrite Time 2024-05-02 09:49:50Z
 MRUListEx = 0
@@ -553,7 +553,7 @@ PID	Process	Value	Privilege	Attributes	Description
 
 ```
 
-# Creating a PLASO Timeline
+## Creating a PLASO Timeline
 
 Converted DZIMTENE24 image from VHD format to RAW.
 
@@ -586,7 +586,7 @@ Sorted and exported Timeline Data as a CSV File.
 psort.py -o l2tcsv -w timeline.csv disk.plaso2 "date > 2024-05-01 00:00:00"
 ```
 
-# Timeline evidences
+## Timeline evidences
 
 Winrar extracted and executed script `kontakti.png .cmd`
 
@@ -709,9 +709,9 @@ Created file `C:\Users\AD_admin\Desktop\haxed.txt`
 ![image 32.png](image_32.png)
 
 
-# Technical Timeline
+## Technical Timeline
 
-### Timeline
+
 
 | **Time**                  | **Activity** |
 |---------------------------|--------------|
@@ -736,7 +736,7 @@ Created file `C:\Users\AD_admin\Desktop\haxed.txt`
 | 02/05/2024 11:43:13       | System shutdown. |
 
 
-# Conclusions
+## Conclusions
 
 **Be Careful and Check emails closely:**
 - Always pay close attention to the sender's details in emails.
@@ -758,8 +758,3 @@ Created file `C:\Users\AD_admin\Desktop\haxed.txt`
 **Educate and Train employees:**
 - Regular cybersecurity awareness training for all employees.
 - Provide guidelines on recognizing phishing attempts, social engineering tactics and best practices for cyber security.
-
-
-
-
-
